@@ -1,7 +1,6 @@
 ## Required
 
-NodeJS
-NPM
+NodeJS, NPM
 
 ### Install dependencies
 
