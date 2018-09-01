@@ -11,6 +11,11 @@ npm install
 
 npm start
 
+### Exit project
+
+enter command:
+'stop'
+
 ### Test projet
 
 npm test

@@ -19,7 +19,7 @@ exports.convertStringToNumber = function (inputString) {
   return inputString;
 };
 
-exports.convertNumberToWord = function (inputString) {
+exports.convertNumberToWords = function (inputString) {
 
   let allWords = [];
 
