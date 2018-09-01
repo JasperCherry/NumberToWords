@@ -7,15 +7,15 @@ NPM
 
 npm install
 
-### Start project
+### Start program
 
 npm start
 
-### Exit project
+### Exit program
 
 enter command:
 'stop'
 
-### Test projet
+### Test program
 
 npm test
