@@ -23,24 +23,34 @@ exports.convertNumberToWord = function (inputString) {
 
   let allWords = [];
 
-  if (inputString.length <= 3) {
-    assingThreeDigitMax(allWords, inputString);
-  } else if (inputString.length <= 6) {
-    assingThreeDigitMax(allWords, inputString.substring(0, inputString.length - 3));
-    if (Number(inputString.substring(0, inputString.length - 3)) !== 0) {
-      allWords.push('thousand');
+  if (Number(inputString) === 0) {
+    allWords.push('zero');
+  } else {
+    if (inputString.length <= 3) {
+
+      allWords = assingThreeDigitMax(allWords, inputString, true);
+
+    } else if (inputString.length <= 6) {
+
+      allWords = assingThreeDigitMax(allWords, inputString.substring(0, inputString.length - 3), false);
+      if (Number(inputString.substring(0, inputString.length - 3)) !== 0) {
+        allWords.push('thousand');
+      }
+      allWords = assingThreeDigitMax(allWords, inputString.substring(inputString.length - 3, inputString.length), true);
+
+    } else if (inputString.length <= 9) {
+
+      allWords = assingThreeDigitMax(allWords, inputString.substring(0, inputString.length - 6), false);
+      if (Number(inputString.substring(0, inputString.length - 6)) !== 0) {
+        allWords.push('million');
+      }
+      allWords = assingThreeDigitMax(allWords, inputString.substring(inputString.length - 6, inputString.length - 3), false);
+      if (Number(inputString.substring(inputString.length - 6, inputString.length - 3)) !== 0) {
+        allWords.push('thousand');
+      }
+      allWords = assingThreeDigitMax(allWords, inputString.substring(inputString.length - 3, inputString.length), true);
+
     }
-    assingThreeDigitMax(allWords, inputString.substring(inputString.length - 3, inputString.length));
-  } else if (inputString.length <= 9) {
-    assingThreeDigitMax(allWords, inputString.substring(0, inputString.length - 6));
-    if (Number(inputString.substring(0, inputString.length - 3)) !== 0) {
-      allWords.push('million');
-    }
-    assingThreeDigitMax(allWords, inputString.substring(inputString.length - 6, inputString.length - 3));
-    if (Number(inputString.substring(inputString.length - 6, inputString.length - 3)) !== 0) {
-      allWords.push('thousand');
-    }
-    assingThreeDigitMax(allWords, inputString.substring(inputString.length - 3, inputString.length));
   }
 
   let finalString = '';
@@ -57,19 +67,19 @@ exports.convertNumberToWord = function (inputString) {
   return finalString;
 };
 
-function assingThreeDigitMax(allWords, inputString) {
+function assingThreeDigitMax(allWords, inputString, zeroPossible) {
   if (inputString.length === 3) {
-    allWords = assignThreeDigit(allWords, inputString)
+    allWords = assignThreeDigit(allWords, inputString, zeroPossible)
   } else if (inputString.length === 2) {
-    allWords = assignTwoDigit(allWords, inputString);
+    allWords = assignTwoDigit(allWords, inputString, zeroPossible);
   } else if (inputString.length === 1) {
-    allWords = assignOneDigit(allWords, inputString);
+    allWords = assignOneDigit(allWords, inputString, zeroPossible);
   }
 
   return allWords;
 }
 
-function assignThreeDigit(allWords, inputString) {
+function assignThreeDigit(allWords, inputString, zeroPossible) {
   allWords.push(assign0to19(inputString[0], false));
 
   if (inputString[0] !== '0') {
@@ -84,7 +94,7 @@ function assignThreeDigit(allWords, inputString) {
         allWords.push(assign20to90(inputString[1]));
       } else {
         allWords.push(assign20to90(inputString[1]));
-        allWords.push(assign0to19(inputString[2], false));
+        allWords.push(assign0to19(inputString[2], zeroPossible));
       }
     }
   }
@@ -92,7 +102,7 @@ function assignThreeDigit(allWords, inputString) {
   return allWords;
 }
 
-function assignTwoDigit(allWords, inputString) {
+function assignTwoDigit(allWords, inputString, zeroPossible) {
   if (Number(inputString[0] + inputString[1]) < 20) {
     allWords.push(assign0to19(inputString[0] + inputString[1], false));
   } else {
@@ -100,21 +110,21 @@ function assignTwoDigit(allWords, inputString) {
       allWords.push(assign20to90(inputString[0]));
     } else {
       allWords.push(assign20to90(inputString[0]));
-      allWords.push(assign0to19(inputString[1], true));
+      allWords.push(assign0to19(inputString[1], zeroPossible));
     }
   }
 
   return allWords;
 }
 
-function assignOneDigit(allWords, inputString) {
-  allWords.push(assign0to19(inputString[0], true));
+function assignOneDigit(allWords, inputString, zeroPossible) {
+  allWords.push(assign0to19(inputString[0], zeroPossible));
 
   return allWords;
 }
 
-function assign0to19(number, placeZero) {
-  if (placeZero && (number === '0' || number === '00')) {
+function assign0to19(number, zeroPossible) {
+  if (zeroPossible && (number === '0' || number === '00')) {
     return 'zero';
   }
   if (number === '1' || number === '01') {

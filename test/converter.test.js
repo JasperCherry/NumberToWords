@@ -93,8 +93,63 @@ describe('Converter / converting number to words', function () {
     });
 
     it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000000001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('00000001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('0000001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('00001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('0001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('001');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('01');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('1');
+        assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
         const result = converter.convertNumberToWord('1000000');
         assert.deepEqual(result, 'one million');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('1000001');
+        assert.deepEqual(result, 'one million one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('1000010');
+        assert.deepEqual(result, 'one million ten');
     });
 
     it('should return number using words', function () {
@@ -115,6 +170,42 @@ describe('Converter / converting number to words', function () {
     it('should return number using words', function () {
         const result = converter.convertNumberToWord('000000001');
         assert.deepEqual(result, 'one');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000000010');
+        assert.deepEqual(result, 'ten');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000000100');
+        assert.deepEqual(result, 'one hundred');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000010000');
+        assert.deepEqual(result, 'ten thousand');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000000000');
+        assert.deepEqual(result, 'zero');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('00000');
+        assert.deepEqual(result, 'zero');
+    });
+
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000000123');
+        assert.deepEqual(result, 'one hundred twenty three');
+    });
+
+    it('should return number using words', function () {
+        const result = converter.convertNumberToWord('000123000');
+        assert.deepEqual(result, 'one hundred twenty three thousand');
     });
 
 });
