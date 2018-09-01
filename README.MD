@@ -1,11 +1,16 @@
-## Install dependencies
+## Required
+
+NodeJS
+NPM
+
+### Install dependencies
 
 npm install
 
-## Start project
+### Start project
 
 npm start
 
-## Test projet
+### Test projet
 
 npm test
